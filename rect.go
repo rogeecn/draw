@@ -21,6 +21,10 @@ func NewRectFromPoint(lt *Point, rb *Point) *Rect {
 	return &Rect{lt.X, lt.Y, rb.X - lt.X, rb.Y - lt.Y}
 }
 
+func NewRectFromPointFlat(x, y, x1, y1 int) *Rect {
+	return &Rect{x, y, x1 - x, y1 - y}
+}
+
 func (r *Rect) Left() int {
 	return r.X
 }
