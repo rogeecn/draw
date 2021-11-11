@@ -24,7 +24,7 @@ func ParseToInt(raw string) ([]int, error) {
 	return intLst, nil
 }
 
-func ParsePontSize(x, y, w, h int) (*Point, *Size) {
+func ParsePointSize(x, y, w, h int) (*Point, *Size) {
 	return NewPoint(x, y), NewSize(w, h)
 }
 
@@ -34,4 +34,8 @@ func ParsePoint(x, y, x1, y1 int) (*Point, *Point) {
 
 func PointToRect(x, y, x1, y1 int) *Rect {
 	return NewRectFromPoint(ParsePoint(x, y, x1, y1))
+}
+
+func SizeToRect(x, y, w, h int) *Rect {
+	return NewRectFromSize(ParsePointSize(x, y, w, h))
 }
