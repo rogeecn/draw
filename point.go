@@ -2,10 +2,7 @@ package draw
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
 	"math/rand"
-	"strconv"
-	"strings"
 )
 
 type Point struct {
@@ -18,23 +15,12 @@ func NewPoint(x, y int) *Point {
 }
 
 func NewPointFromString(ptStr string) (*Point, error) {
-	ptItems := strings.Split(strings.Trim(ptStr, " ,"), ",")
-	if len(ptItems) != 2 {
-		return nil, errors.New("坐标字符串参数格式错误")
-	}
-	xStr, yStr := ptItems[0], ptItems[1]
-
-	x, err := strconv.Atoi(xStr)
+	intLst, err := ParseToInt(ptStr)
 	if err != nil {
 		return nil, err
 	}
 
-	y, err := strconv.Atoi(yStr)
-	if err != nil {
-		return nil, err
-	}
-
-	return &Point{x, y}, nil
+	return &Point{intLst[0], intLst[1]}, nil
 }
 
 func (p *Point) Equal(pt *Point) bool {
@@ -46,9 +32,9 @@ func (p *Point) Offset(x, y int) {
 	p.Y = p.Y + y
 }
 
-func (p *Point) OffsetRandom(x, y int, s *Size) {
-	p.X = p.X + x + rand.Intn(s.Width)
-	p.Y = p.Y + y + rand.Intn(s.Height)
+func (p *Point) OffsetSize(s *Size) {
+	p.X = p.X + rand.Intn(s.Width)
+	p.Y = p.Y + rand.Intn(s.Height)
 }
 
 func (p *Point) Valid() bool {
