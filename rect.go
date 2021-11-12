@@ -52,6 +52,9 @@ func (r *Rect) BottomLeft() *Point {
 func (r *Rect) BottomRight() *Point {
 	return NewPoint(r.X+r.Width, r.Y+r.Height)
 }
+func (r *Rect) Center() *Point {
+	return NewPoint(r.X+r.Width/2, r.Y+r.Height/2)
+}
 
 func (r *Rect) Empty() bool {
 	return r.Width <= 0 || r.Height <= 0
