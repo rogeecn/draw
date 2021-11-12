@@ -70,6 +70,26 @@ func (r *Rect) Contains(pt *Point) bool {
 	return r.X < pt.X && r.Y < pt.Y && pt.X < r.Right() && pt.Y < r.Bottom()
 }
 
+func (r *Rect) RegionLeft() *Rect {
+	return NewRectFromSize(r.TopLeft(), NewSize(r.Width/2, r.Height))
+}
+
+func (r *Rect) RegionRight() *Rect {
+	rect := r.RegionLeft()
+	rect.SetLocation(NewPoint(r.Left()+r.Width/2, r.Top()))
+	return rect
+}
+
+func (r *Rect) RegionTop() *Rect {
+	return NewRectFromSize(r.TopLeft(), NewSize(r.Width, r.Height/2))
+}
+
+func (r *Rect) RegionBottom() *Rect {
+	rect := r.RegionTop()
+	rect.SetLocation(NewPoint(r.Left(), r.Top()+r.Width/2))
+	return rect
+}
+
 func (r *Rect) RegionTopLeft() *Rect {
 	return NewRectFromSize(r.TopLeft(), NewSize(r.Width/2, r.Height/2))
 }
