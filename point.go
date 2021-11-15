@@ -27,14 +27,18 @@ func (p *Point) Equal(pt *Point) bool {
 	return p.X == pt.X && p.Y == pt.Y
 }
 
-func (p *Point) Offset(x, y int) {
+func (p *Point) Offset(x, y int) *Point {
 	p.X = p.X + x
 	p.Y = p.Y + y
+
+	return p
 }
 
-func (p *Point) OffsetSize(s *Size) {
+func (p *Point) OffsetSize(s *Size) *Point {
 	p.X = p.X + rand.Intn(s.Width)
 	p.Y = p.Y + rand.Intn(s.Height)
+
+	return p
 }
 
 func (p *Point) Valid() bool {

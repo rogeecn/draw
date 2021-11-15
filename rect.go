@@ -69,9 +69,11 @@ func (r *Rect) SetLocation(pt *Point) {
 	r.Y = pt.Y
 }
 
-func (r *Rect) Offset(ox, oy int) {
+func (r *Rect) Offset(ox, oy int) *Rect {
 	r.X = r.X + ox
 	r.Y = r.Y + oy
+
+	return r
 }
 
 func (r *Rect) Contains(pt *Point) bool {
