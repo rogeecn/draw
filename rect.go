@@ -20,6 +20,9 @@ func NewRectFromSize(lt *Point, s *Size) *Rect {
 func NewRectFromPoint(lt *Point, rb *Point) *Rect {
 	return &Rect{lt.X, lt.Y, rb.X - lt.X, rb.Y - lt.Y}
 }
+func (r *Rect) Clone() *Rect {
+	return &Rect{r.X, r.Y, r.Width, r.Height}
+}
 
 func (r *Rect) Left() int {
 	return r.X
@@ -34,7 +37,7 @@ func (r *Rect) Top() int {
 }
 
 func (r *Rect) Bottom() int {
-	return r.Y + r.Width
+	return r.Y + r.Height
 }
 
 func (r *Rect) TopLeft() *Point {

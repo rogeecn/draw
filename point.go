@@ -34,6 +34,10 @@ func (p *Point) Offset(x, y int) *Point {
 	return p
 }
 
+func (p *Point) Clone() *Point {
+	return NewPoint(p.X, p.Y)
+}
+
 func (p *Point) OffsetSize(s *Size) *Point {
 	p.X = p.X + rand.Intn(s.Width)
 	p.Y = p.Y + rand.Intn(s.Height)
