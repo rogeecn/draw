@@ -45,6 +45,10 @@ func (p *Point) OffsetSize(s *Size) *Point {
 	return p
 }
 
+func (p *Point) ToRect(w, h int) *Rect {
+	return NewRectFromSize(p, NewSize(w, h))
+}
+
 func (p *Point) Valid() bool {
 	return p.X >= 0 && p.Y >= 0
 }
