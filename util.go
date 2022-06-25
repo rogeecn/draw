@@ -13,9 +13,7 @@ func ParseToInt(raw string) ([]int, error) {
 	var strLst []string
 	for _, s := range strLst1 {
 		ss := strings.Split(strings.Trim(s, ", "), "|")
-		for _, s2 := range ss {
-			strLst = append(strLst, s2)
-		}
+		strLst = append(strLst, ss...)
 	}
 
 	intLst := make([]int, len(strLst))
