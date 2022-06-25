@@ -107,6 +107,10 @@ func (r *Rect) RegionTopLeft() *Rect {
 	return NewRectFromSize(r.TopLeft(), NewSize(r.Width/2, r.Height/2))
 }
 
+func (r *Rect) RegionTopCenter() *Rect {
+	return NewRectFromSize(NewPoint(r.Width/3, 0), NewSize(r.Width/3, r.Height/2))
+}
+
 func (r *Rect) RegionTopRight() *Rect {
 	rt := r.RegionTopLeft()
 	rt.SetLocation(NewPoint(r.X+r.Width/2, r.Y))
@@ -119,10 +123,8 @@ func (r *Rect) RegionBottomLeft() *Rect {
 	return rt
 }
 
-func (r *Rect) RegionMiddleCenter() *Rect {
-	rt := r.RegionTopLeft()
-	rt.SetLocation(NewPoint(r.X+r.Width/3, r.Y+r.Height/3))
-	return rt
+func (r *Rect) RegionBottomCenter() *Rect {
+	return NewRectFromSize(NewPoint(r.Width/3, r.Height/2), NewSize(r.Width/3, r.Height/2))
 }
 
 func (r *Rect) RegionBottomRight() *Rect {
@@ -140,6 +142,12 @@ func (r *Rect) RegionCenter() *Rect {
 func (r *Rect) RegionMiddle() *Rect {
 	rt := NewRect(NewSize(r.Width, r.Height/2))
 	rt.SetLocation(NewPoint(r.X, r.Y+r.Height/3))
+	return rt
+}
+
+func (r *Rect) RegionMiddleCenter() *Rect {
+	rt := r.RegionTopLeft()
+	rt.SetLocation(NewPoint(r.X+r.Width/3, r.Y+r.Height/3))
 	return rt
 }
 
